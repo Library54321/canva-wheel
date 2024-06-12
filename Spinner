@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel</title>
+    <style>
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #000;
+            overflow: hidden;
+        }
+
+        .wheel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: center center;
+            transition: transform 4s ease-out;
+        }
+
+        .wheel div {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 0 0;
+        }
+
+        .wheel div:nth-child(1) { transform: rotate(0deg) translateX(-100%) rotate(45deg); background: #FF6347; }
+        .wheel div:nth-child(2) { transform: rotate(45deg) translateX(-100%) rotate(45deg); background: #FFA07A; }
+        .wheel div:nth-child(3) { transform: rotate(90deg) translateX(-100%) rotate(45deg); background: #FFD700; }
+        .wheel div:nth-child(4) { transform: rotate(135deg) translateX(-100%) rotate(45deg); background: #ADFF2F; }
+        .wheel div:nth-child(5) { transform: rotate(180deg) translateX(-100%) rotate(45deg); background: #32CD32; }
+        .wheel div:nth-child(6) { transform: rotate(225deg) translateX(-100%) rotate(45deg); background: #20B2AA; }
+        .wheel div:nth-child(7) { transform: rotate(270deg) translateX(-100%) rotate(45deg); background: #1E90FF; }
+        .wheel div:nth-child(8) { transform: rotate(315deg) translateX(-100%) rotate(45deg); background: #BA55D3; }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="wheel-container">
+        <div class="pointer"></div>
+        <div class="wheel" id="wheel">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="spin()">Spin</button>
+    </div>
+    <script>
+        function spin() {
+            const wheel = document.getElementById('wheel');
+            const randomDegree = Math.floor(Math.random() * 360) + 720; // Ensure at least 2 full rotations
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+        }
+    </script>
+</body>
+</html>
